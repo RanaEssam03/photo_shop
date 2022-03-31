@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Level1 second term\Programming 1\A3\198713\photoShop\build\CMakeFiles\5e0008cb11a1679f48ad472f4accdc72\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5F0F0D36-FCB2-3FD7-B112-26ADA3A76D2D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

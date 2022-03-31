@@ -1,0 +1,3 @@
+D:/Level1 second term/Programming 1/A3/198713/photoShop/cmake-build-debug/CMakeFiles/photoShop.dir
+D:/Level1 second term/Programming 1/A3/198713/photoShop/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Level1 second term/Programming 1/A3/198713/photoShop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
