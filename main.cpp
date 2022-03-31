@@ -9,14 +9,13 @@ unsigned char image[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
 void bAndW ();
+void flipImage();
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
     while (true){
-        //string fileName;
         char filter;
        cout <<"Please enter file name of the image to process : " << endl << "->";
-       //cin >> fileName;
         loadImage();
        cout << "Please select a filter to apply or 0 to exit:\n";
        cout << "1-Black & white Filter\n2-Invert Filter\n3-Merge Filter\n4-Flip Image\n5-Darken and Lighten Image";
@@ -31,6 +30,10 @@ int main() {
         else if (filter == '1'){
             bAndW();
         }
+        else if (filter == '4'){
+            flipImage();
+        }
+
         saveImage();
 
     }
@@ -42,7 +45,7 @@ void loadImage () {
     char imageFileName[100];
 
     // Get gray scale image file name
-    //cout << "Enter the source image file name: ";
+
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
@@ -72,6 +75,31 @@ void bAndW() {
                 image[i][j] = 255;
             else
                 image[i][j] = 0;
+        }
+    }
+}
+
+void flipImage(){
+    char option ;
+    cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
+    cin >> option;
+
+    if (option == 'v'){
+        for (int i = 0 ; i < SIZE/2 ; i++){
+            for (int j = 0 ; j < SIZE ; j++){
+                int temp = image[i][j];
+                image[i][j] = image[SIZE-i-1][j];
+                image[SIZE-i-1][j] = temp;
+            }
+        }
+    }
+    else if (option == 'h'){
+        for (int i = 0 ; i < SIZE ; i++){
+            for (int j = 0 ; j < SIZE/2 ; j++){
+                int temp = image[i][j];
+                image[i][j] = image[i][SIZE-j-1];
+                image[i][SIZE-j-1] = temp;
+            }
         }
     }
 }
