@@ -33,6 +33,9 @@ int main() {
         else if (filter == '4'){
             flipImage();
         }
+        else if (filter == '5'){
+            continue;
+        }
 
         saveImage();
 
