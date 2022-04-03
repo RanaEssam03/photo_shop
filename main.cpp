@@ -11,6 +11,7 @@ void saveImage ();
 void bAndW ();
 void flipImage();
 void detectImageEdges();
+void mirrorImage();
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
@@ -36,6 +37,9 @@ int main() {
         }
         else if (filter == '7'){
            detectImageEdges();
+        }
+        else if (filter == 'a'){
+            mirrorImage();
         }
         else if (filter == 's'){
             saveImage();
@@ -122,6 +126,41 @@ void detectImageEdges(){
                 image[i][j] = 225;
             }
 
+        }
+    }
+}
+
+void mirrorImage(){
+    char side;
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
+    cin >> side;
+    if (side == 'l'){
+        for (int i = 0; i <255; i++){
+            for (int j = 127; j < 255 ; j++){
+                image[i][j] = image[i][255-j-1];
+            }
+        }
+    }
+    else if (side == 'r'){
+        for (int i = 0; i <255; i++){
+            for (int j = 0; j < 127 ; j++){
+                image[i][j] = image[i][255-j-1];
+            }
+        }
+    }
+
+    if (side == 'u'){
+        for (int i = 127; i <255; i++){
+            for (int j = 0; j < 255 ; j++){
+                image[i][j] = image[255-1-i][j];
+            }
+        }
+    }
+    if (side == 'd'){
+        for (int i = 0; i <127; i++){
+            for (int j = 0; j < 255 ; j++){
+                image[i][j] = image[255-1-i][j];
+            }
         }
     }
 }
