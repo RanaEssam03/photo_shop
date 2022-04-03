@@ -1,0 +1,10 @@
+<application>
+  <component name="GithubAccounts">
+    <account name="nourhan031" id="3ebfad12-4400-492b-a98f-118ce139a74a">
+      <server host="github.com" />
+    </account>
+  </component>
+  <component name="GithubSettings">
+    <option name="CLONE_GIT_USING_SSH" value="true" />
+  </component>
+</application>
