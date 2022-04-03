@@ -119,10 +119,10 @@ void detectImageEdges(){
     bAndW();
     for (int i = 0 ; i <255; i++){
         for (int j = 0 ; j < 255; j++){
-            if (image[i][j] != image[i][j+1]){
+            if (image[i][j] != image[i][j+1] || image[i][j] != image[i+1][j]){
                 image[i][j] =0;
             }
-            else if (image[i][j] == image[i][j+1]){
+            else if (image[i][j] == image[i][j+1] || image[i][j] == image[i+1][j]){
                 image[i][j] = 225;
             }
 
