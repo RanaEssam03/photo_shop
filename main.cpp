@@ -9,10 +9,11 @@ unsigned char image[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
 void bAndW ();
-void flipImage();
+void flipImage(char option);
 void detectImageEdges();
 void mirrorImage();
 void blur();
+
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
@@ -34,7 +35,10 @@ int main() {
             bAndW();
         }
         else if (filter == '4'){
-            flipImage();
+            char option ;
+            cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
+            cin >> option;
+            flipImage(option);
         }
         else if (filter == '7'){
            detectImageEdges();
@@ -92,11 +96,10 @@ void bAndW() {
         }
     }
 }
+//___________________________________________________________
 
-void flipImage(){
-    char option ;
-    cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
-    cin >> option;
+void flipImage(char option){
+
 
     if (option == 'v'){
         for (int i = 0 ; i < SIZE/2 ; i++){
@@ -117,7 +120,7 @@ void flipImage(){
         }
     }
 }
-
+//____________________________________________________________
 
 void detectImageEdges(){
     bAndW();
@@ -127,13 +130,13 @@ void detectImageEdges(){
                 image[i][j] =0;
             }
             else if (image[i][j] == image[i][j+1] || image[i][j] == image[i+1][j]){
-                image[i][j] = 225;
+                image[i][j] = 255;
             }
 
         }
     }
 }
-
+//______________________________________________________
 void mirrorImage(){
     char side;
     cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
@@ -169,6 +172,7 @@ void mirrorImage(){
     }
 }
 
+//________________________________________________________________________________
 void blur () {
     int value;
     for (int i=0 ; i < SIZE ; i+=2){
