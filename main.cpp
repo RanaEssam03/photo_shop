@@ -14,6 +14,7 @@ void detectImageEdges();
 void mirrorImage();
 void blur();
 void shrink();
+void Invert ();
 
 
 int main() {
@@ -34,6 +35,9 @@ int main() {
        }
         else if (filter == '1'){
             bAndW();
+        }
+        else if (filter == '1'){
+            Invert();
         }
         else if (filter == '4'){
             char option ;
@@ -249,3 +253,12 @@ void shrink () {
             }
         }
     }}
+
+void Invert (){
+    int new ;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            new = image[i][j];
+            new = 255 - new; 
+
+}
