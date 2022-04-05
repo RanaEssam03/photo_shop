@@ -15,6 +15,7 @@ void mirrorImage();
 void blur();
 void shrink();
 void Invert ();
+void Rotate(int option);
 
 //------------------------------------------------------------
 
@@ -45,6 +46,12 @@ int main() {
             cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
             cin >> option;
             flipImage(option);
+        }
+        else if (filter == '5') {
+            int option;
+            cout << "Rotate 90 or 180 or 270 ?\n-->";
+            cin >> option;
+            Rotate(option);
         }
         else if (filter == '7'){
            detectImageEdges();
@@ -262,4 +269,68 @@ void Invert (){
             image[i][j] = 255 - image[i][j];
         }
     }
+}
+
+void Rotate (){
+    int n = 0;
+    if (option = 90) {
+        for (int i = 0; i < SIZE; i++) {
+            int start = 0;
+            int end = SIZE - 1;
+            while (start < end) {
+                swap(image[i][start], image[i][end]);
+                start++;
+                end--;
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i < j) {
+                    swap(image[i][j], image[j][i]);
+                }
+            }
+        }
+    }
+        if (option = 180) {
+            while (n < 2) {
+                for (int i = 0; i < SIZE; i++) {
+                    int start = 0;
+                    int end = SIZE - 1;
+                    while (start < end) {
+                        swap(image[i][start], image[i][end]);
+                        start++;
+                        end--;
+                    }
+                }
+                for (int i = 0; i < SIZE; i++) {
+                    for (int j = 0; j < SIZE; j++) {
+                        if (i < j) {
+                            swap(image[i][j], image[j][i]);
+                        }
+                    }
+                }
+                n++;
+            }
+        }
+        if (option = 270){
+            while (n < 3) {
+                for (int i = 0; i < SIZE; i++) {
+                    int start = 0;
+                    int end = SIZE - 1;
+                    while (start < end) {
+                        swap(image[i][start], image[i][end]);
+                        start++;
+                        end--;
+                    }
+                }
+                for (int i = 0; i < SIZE; i++) {
+                    for (int j = 0; j < SIZE; j++) {
+                        if (i < j) {
+                            swap(image[i][j], image[j][i]);
+                        }
+                    }
+                }
+                n++;
+            }
+        }
 }
