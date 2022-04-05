@@ -48,6 +48,9 @@ int main() {
         else if (filter == '7'){
            detectImageEdges();
         }
+        else if (filter == '9'){
+            shrink();
+        }
         else if (filter == 'a'){
             mirrorImage();
         }
@@ -255,9 +258,10 @@ void shrink () {
     }}
 
 void Invert (){
-           for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                    image[i][j] = 255 - image[i][j];
-            }
-        }
+    int new ;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            new = image[i][j];
+            new = 255 - new; 
+
 }
