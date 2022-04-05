@@ -8,7 +8,7 @@ unsigned char image[SIZE][SIZE];
 
 void loadImage ();
 void saveImage ();
-void bAndW ();
+void blackAndWhite ();
 void flipImage(char option);
 void detectImageEdges();
 void mirrorImage();
@@ -16,6 +16,7 @@ void blur();
 void shrink();
 void Invert ();
 
+//------------------------------------------------------------
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
@@ -34,7 +35,7 @@ int main() {
            break;
        }
         else if (filter == '1'){
-            bAndW();
+            blackAndWhite();
         }
         else if (filter == '2'){
             Invert();
@@ -93,7 +94,7 @@ void saveImage () {
 }
 //_____________________________________________
 
-void bAndW() {
+void blackAndWhite() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
 
@@ -107,8 +108,6 @@ void bAndW() {
 //___________________________________________________________
 
 void flipImage(char option){
-
-
     if (option == 'v'){
         for (int i = 0 ; i < SIZE/2 ; i++){
             for (int j = 0 ; j < SIZE ; j++){
@@ -131,16 +130,16 @@ void flipImage(char option){
 //____________________________________________________________
 
 void detectImageEdges(){
-    bAndW();
+    //to detect the difference between only 2 colors
+    blackAndWhite();
     for (int i = 0 ; i <255; i++){
         for (int j = 0 ; j < 255; j++){
             if (image[i][j] != image[i][j+1] || image[i][j] != image[i+1][j]){
-                image[i][j] =0;
+                image[i][j] =0;  //if there is a difference between two colors then there is an edge between them
             }
             else if (image[i][j] == image[i][j+1] || image[i][j] == image[i+1][j]){
                 image[i][j] = 255;
             }
-
         }
     }
 }
@@ -198,7 +197,7 @@ void blur () {
 
         }}
 }
-
+//----------------------------------------------------------------------------------
 void shrink () {
     cout << "please enter the value you want to shrink with from the list[1/2,1/3,1/4]\n";
     string shrink_value;
@@ -256,12 +255,11 @@ void shrink () {
             }
         }
     }}
-
+//---------------------------------------------------------------------------------
 void Invert (){
-    int new ;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            new = image[i][j];
-            new = 255 - new; 
-
+            image[i][j] = 255 - image[i][j];
+        }
+    }
 }
