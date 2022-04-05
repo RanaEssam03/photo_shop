@@ -255,10 +255,9 @@ void shrink () {
     }}
 
 void Invert (){
-    int new ;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            new = image[i][j];
-            new = 255 - new; 
-
+           for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                    image[i][j] = 255 - image[i][j];
+            }
+        }
 }
