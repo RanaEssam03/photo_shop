@@ -197,14 +197,14 @@ void shrink () {
     string shrink_value;
     cin >> shrink_value;
     if (shrink_value == "1/2") {
-        int c = 0;
+        int x = 0;
         for (int i = 0; i < SIZE; i += 2) {
-            int d = 0;
+            int y = 0;
             for (int j = 0; j < SIZE; j += 2) {
-                image[c][d] = ((image[i][j] + image[i + 1][j] + image[i][j + 1] + image[i + 1][j + 1]) / 4);
-                d++;
+                image[x][y] = ((image[i][j] + image[i + 1][j] + image[i][j + 1] + image[i + 1][j + 1]) / 4);
+                y++;
             }
-            c++;
+            x++;
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -215,14 +215,14 @@ void shrink () {
         }
     }
     else if (shrink_value == "1/3"){
-        int c = 0;
+        int x = 0;
         for (int i = 0; i < SIZE; i += 3) {
-            int d = 0;
+            int y = 0;
             for (int j = 0; j < SIZE; j += 3) {
-                image[c][d] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1])/9);
-                d++;
+                image[x][y] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1])/9);
+                y++;
             }
-            c++;
+            x++;
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -232,14 +232,14 @@ void shrink () {
             }
         }
     }else if (shrink_value == "1/4"){
-        int c = 0;
+        int x = 0;
         for (int i = 0; i < SIZE; i += 4) {
-            int d = 0;
+            int y = 0;
             for (int j = 0; j < SIZE; j += 4) {
-                image[c][d] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1]+image[i+3][j]+image[i][j+3]+image[i+1][j+3]+image[i+3][j+1]+image[i+3][j+2]+image[i+2][j+3])/16);
-                d++;
+                image[x][y] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1]+image[i+3][j]+image[i][j+3]+image[i+1][j+3]+image[i+3][j+1]+image[i+3][j+2]+image[i+2][j+3])/16);
+                y++;
             }
-            c++;
+            x++;
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
