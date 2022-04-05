@@ -13,6 +13,7 @@ void flipImage(char option);
 void detectImageEdges();
 void mirrorImage();
 void blur();
+void shrink();
 
 
 int main() {
@@ -190,3 +191,61 @@ void blur () {
 
         }}
 }
+
+void shrink () {
+    cout << "please enter the value you want to shrink with from the list[1/2,1/3,1/4]\n";
+    string shrink_value;
+    cin >> shrink_value;
+    if (shrink_value == "1/2") {
+        int c = 0;
+        for (int i = 0; i < SIZE; i += 2) {
+            int d = 0;
+            for (int j = 0; j < SIZE; j += 2) {
+                image[c][d] = ((image[i][j] + image[i + 1][j] + image[i][j + 1] + image[i + 1][j + 1]) / 4);
+                d++;
+            }
+            c++;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i >= (SIZE / 2) || j >= (SIZE / 2)) {
+                    image[i][j] = SIZE - 1;
+                }
+            }
+        }
+    }
+    else if (shrink_value == "1/3"){
+        int c = 0;
+        for (int i = 0; i < SIZE; i += 3) {
+            int d = 0;
+            for (int j = 0; j < SIZE; j += 3) {
+                image[c][d] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1])/9);
+                d++;
+            }
+            c++;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i >= (SIZE / 3) || j >= (SIZE / 3)) {
+                    image[i][j] = SIZE - 1;
+                }
+            }
+        }
+    }else if (shrink_value == "1/4"){
+        int c = 0;
+        for (int i = 0; i < SIZE; i += 4) {
+            int d = 0;
+            for (int j = 0; j < SIZE; j += 4) {
+                image[c][d] = ((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1]+image[i+3][j]+image[i][j+3]+image[i+1][j+3]+image[i+3][j+1]+image[i+3][j+2]+image[i+2][j+3])/16);
+                d++;
+            }
+            c++;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i >= (SIZE / 4) || j >= (SIZE / 4)) {
+                    image[i][j] = SIZE - 1;
+                }
+            }
+        }
+    }}
