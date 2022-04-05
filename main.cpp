@@ -36,7 +36,7 @@ int main() {
         else if (filter == '1'){
             bAndW();
         }
-        else if (filter == '1'){
+        else if (filter == '2'){
             Invert();
         }
         else if (filter == '4'){
