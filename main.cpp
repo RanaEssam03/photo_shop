@@ -1,3 +1,12 @@
+// FCI – Programming 1 – 2022 - Assignment 3
+// Program Name: photoShop.cpp
+// Last Modification Date: 6/4/2022
+// Author1 and ID and Group: Rana Essam Ibrahim 20210133 S1
+// Author2 and ID and Group: Nourhan Abdullah  20210437 S1
+// Author3 and ID and Group: Hazem Medhat  20210116
+// Teaching Assistant: Eng: Nesma & Eng: Youssra
+// Purpose:first 6 filters
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -10,8 +19,6 @@ void loadImage ();
 void saveImage ();
 void blackAndWhite ();
 void flipImage(char option);
-void detectImageEdges();
-void mirrorImage();
 void blur();
 void shrink();
 void Invert ();
@@ -30,37 +37,31 @@ int main() {
        cout << "\n6- Rotate Image\n7- Detect Image Edges\n8- Enlarge Image\n9- Shrink Image\na- Mirror 1/2 Image";
        cout << "\nb- Shuffle Image\nc- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
       cin.ignore();
-       cin >> filter;
+       cin >> filter;  //to get the filter number
 
         if (filter =='0'){
            break;
        }
         else if (filter == '1'){
-            blackAndWhite();
+            blackAndWhite(); //this filter make the image only black and white
         }
         else if (filter == '2'){
-            Invert();
+            Invert(); //this filter inverts the colors
         }
         else if (filter == '4'){
             char option ;
             cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
-            cin >> option;
+            cin >> option;   //to detect the flip direction
             flipImage(option);
         }
         else if (filter == '5') {
-            int option;
+            int option; //to detect the flip degree
             cout << "Rotate 90 or 180 or 270 ?\n-->";
             cin >> option;
             Rotate(option);
         }
-        else if (filter == '7'){
-           detectImageEdges();
-        }
         else if (filter == '9'){
             shrink();
-        }
-        else if (filter == 'a'){
-            mirrorImage();
         }
         else if (filter == 'c'){
             blur();
@@ -104,7 +105,6 @@ void saveImage () {
 void blackAndWhite() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-
             if (image[i][j] > 127)
                 image[i][j] = 255;
             else
@@ -116,7 +116,7 @@ void blackAndWhite() {
 
 void flipImage(char option){
     if (option == 'v'){
-        for (int i = 0 ; i < SIZE/2 ; i++){
+        for (int i = 0 ; i < SIZE/2 ; i++){  //to loop only on the half of the hight
             for (int j = 0 ; j < SIZE ; j++){
                 int temp = image[i][j];
                 image[i][j] = image[SIZE-i-1][j];
@@ -126,61 +126,10 @@ void flipImage(char option){
     }
     else if (option == 'h'){
         for (int i = 0 ; i < SIZE ; i++){
-            for (int j = 0 ; j < SIZE/2 ; j++){
+            for (int j = 0 ; j < SIZE/2 ; j++){ //to loop only on the half on the width
                 int temp = image[i][j];
                 image[i][j] = image[i][SIZE-j-1];
                 image[i][SIZE-j-1] = temp;
-            }
-        }
-    }
-}
-//____________________________________________________________
-
-void detectImageEdges(){
-    //to detect the difference between only 2 colors
-    blackAndWhite();
-    for (int i = 0 ; i <255; i++){
-        for (int j = 0 ; j < 255; j++){
-            if (image[i][j] != image[i][j+1] || image[i][j] != image[i+1][j]){
-                image[i][j] =0;  //if there is a difference between two colors then there is an edge between them
-            }
-            else if (image[i][j] == image[i][j+1] || image[i][j] == image[i+1][j]){
-                image[i][j] = 255;
-            }
-        }
-    }
-}
-//______________________________________________________
-void mirrorImage(){
-    char side;
-    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
-    cin >> side;
-    if (side == 'l'){
-        for (int i = 0; i <255; i++){
-            for (int j = 127; j < 255 ; j++){
-                image[i][j] = image[i][255-j-1];
-            }
-        }
-    }
-    else if (side == 'r'){
-        for (int i = 0; i <255; i++){
-            for (int j = 0; j < 127 ; j++){
-                image[i][j] = image[i][255-j-1];
-            }
-        }
-    }
-
-    if (side == 'u'){
-        for (int i = 127; i <255; i++){
-            for (int j = 0; j < 255 ; j++){
-                image[i][j] = image[255-1-i][j];
-            }
-        }
-    }
-    if (side == 'd'){
-        for (int i = 0; i <127; i++){
-            for (int j = 0; j < 255 ; j++){
-                image[i][j] = image[255-1-i][j];
             }
         }
     }
@@ -270,10 +219,10 @@ void Invert (){
         }
     }
 }
-
-void Rotate (){
+//-----------------------------------------------------------------------
+void Rotate (int option){
     int n = 0;
-    if (option == 270) {
+    if (option == 90) {
         for (int i = 0; i < SIZE; i++) {
             int start = 0;
             int end = SIZE - 1;
@@ -312,7 +261,7 @@ void Rotate (){
                 n++;
             }
         }
-        if (option == 90){
+        if (option == 270){
             while (n < 3) {
                 for (int i = 0; i < SIZE; i++) {
                     int start = 0;
