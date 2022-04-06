@@ -273,7 +273,7 @@ void Invert (){
 
 void Rotate (){
     int n = 0;
-    if (option = 90) {
+    if (option == 270) {
         for (int i = 0; i < SIZE; i++) {
             int start = 0;
             int end = SIZE - 1;
@@ -291,7 +291,7 @@ void Rotate (){
             }
         }
     }
-        if (option = 180) {
+        if (option == 180) {
             while (n < 2) {
                 for (int i = 0; i < SIZE; i++) {
                     int start = 0;
@@ -312,7 +312,7 @@ void Rotate (){
                 n++;
             }
         }
-        if (option = 270){
+        if (option == 90){
             while (n < 3) {
                 for (int i = 0; i < SIZE; i++) {
                     int start = 0;
