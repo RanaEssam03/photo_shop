@@ -223,12 +223,12 @@ void Invert (){
 //-----------------------------------------------------------------------
 void Rotate (int option){
     int n = 0;
-    if (option == 90) {
-        for (int i = 0; i < SIZE; i++) {
+    if (option == 270) {
+        for (int i = 0; i < SIZE; i++) {    //loop on rows
             int start = 0;
-            int end = SIZE - 1;
+            int end = SIZE - 1;             // start from the last index in the row 
             while (start < end) {
-                swap(image[i][start], image[i][end]);
+                swap(image[i][start], image[i][end]);     //swap last index in the row with the first index (every row )
                 start++;
                 end--;
             }
@@ -236,18 +236,18 @@ void Rotate (int option){
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (i < j) {
-                    swap(image[i][j], image[j][i]);
+                    swap(image[i][j], image[j][i]);       //transpose
                 }
             }
         }
     }
         if (option == 180) {
             while (n < 2) {
-                for (int i = 0; i < SIZE; i++) {
+                for (int i = 0; i < SIZE; i++) {       //loop on rows
                     int start = 0;
-                    int end = SIZE - 1;
+                    int end = SIZE - 1;                // start from the last index in the row
                     while (start < end) {
-                        swap(image[i][start], image[i][end]);
+                        swap(image[i][start], image[i][end]);        //swap last index in the row with the first index (every row )
                         start++;
                         end--;
                     }
@@ -255,20 +255,20 @@ void Rotate (int option){
                 for (int i = 0; i < SIZE; i++) {
                     for (int j = 0; j < SIZE; j++) {
                         if (i < j) {
-                            swap(image[i][j], image[j][i]);
+                            swap(image[i][j], image[j][i]);      //transpose
                         }
                     }
                 }
                 n++;
             }
         }
-        if (option == 270){
+        if (option == 90){
             while (n < 3) {
-                for (int i = 0; i < SIZE; i++) {
+                for (int i = 0; i < SIZE; i++) {       //loop on rows
                     int start = 0;
-                    int end = SIZE - 1;
+                    int end = SIZE - 1;                // start from the last index in the row
                     while (start < end) {
-                        swap(image[i][start], image[i][end]);
+                        swap(image[i][start], image[i][end]);      //swap last index in the row with the first index (every row )
                         start++;
                         end--;
                     }
@@ -276,7 +276,7 @@ void Rotate (int option){
                 for (int i = 0; i < SIZE; i++) {
                     for (int j = 0; j < SIZE; j++) {
                         if (i < j) {
-                            swap(image[i][j], image[j][i]);
+                            swap(image[i][j], image[j][i]);        //transpose
                         }
                     }
                 }
