@@ -68,7 +68,7 @@ int main() {
         int x;
         cout << "Do you want to upload new image (1) or exit (0)?";
         cin >> x;
-        if (x==2){
+        if (x==0){
             break;
         }
     }
