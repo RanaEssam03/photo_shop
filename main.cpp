@@ -46,19 +46,19 @@ int main() {
                 blackAndWhite(); //this filter make the image only black and white
             } else if (filter == '2') {
                 Invert(); //this filter inverts the colors
-            } else if (filter == '3') {
+            } else if (filter == '4') {
                 char option;
                 cout << "Flip (h)orizontally or (v)ertically ?\n-->";
                 cin >> option;   //to detect the flip direction
                 flipImage(option);
-            } else if (filter == '4') {
+            } else if (filter == '5') {
                 int option; //to detect the flip degree
                 cout << "Rotate 90 or 180 or 270 ?\n-->";
                 cin >> option;
                 Rotate(option);
-            } else if (filter == '5') {
+            } else if (filter == '9') {
                 shrink();
-            } else if (filter == '6') {
+            } else if (filter == 'C') {
                 blur();
             } else if (filter == 's') {
                 saveImage();
