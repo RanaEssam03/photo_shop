@@ -34,9 +34,9 @@ int main() {
         loadImage();
         while (true) {
             cout << "Please select a filter to apply or 0 to exit:\n";
-            cout << "1-Black & white Filter\n2-Invert Filter\n3-Merge Filter\n4-Flip Image\n5-Darken and Lighten Image";
-            cout << "\n6- Rotate Image\n7- Detect Image Edges\n8- Enlarge Image\n9- Shrink Image\na- Mirror 1/2 Image";
-            cout << "\nb- Shuffle Image\nc- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
+            cout << "1-Black & white Filter\n2-Invert Filter\n3-Flip Image";
+            cout << "\n4- Rotate Image\n5- Shrink Image";
+            cout << "\n6- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
             cin.ignore();
             cin >> filter;  //to get the filter number
 
@@ -46,19 +46,19 @@ int main() {
                 blackAndWhite(); //this filter make the image only black and white
             } else if (filter == '2') {
                 Invert(); //this filter inverts the colors
-            } else if (filter == '4') {
+            } else if (filter == '3') {
                 char option;
                 cout << "Flip (h)orizontally or (v)ertically ?\n-->";
                 cin >> option;   //to detect the flip direction
                 flipImage(option);
-            } else if (filter == '5') {
+            } else if (filter == '4') {
                 int option; //to detect the flip degree
                 cout << "Rotate 90 or 180 or 270 ?\n-->";
                 cin >> option;
                 Rotate(option);
-            } else if (filter == '9') {
+            } else if (filter == '5') {
                 shrink();
-            } else if (filter == 'c') {
+            } else if (filter == '6') {
                 blur();
             } else if (filter == 's') {
                 saveImage();
@@ -66,7 +66,7 @@ int main() {
             }
         }
         int x;
-        cout << "Do you want to upload new image (1) or exit (2)?";
+        cout << "Do you want to upload new image (1) or exit (0)?";
         cin >> x;
         if (x==2){
             break;
