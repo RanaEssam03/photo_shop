@@ -29,45 +29,46 @@ void Rotate(int option);
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
     char filter;
-    cout <<"Please enter file name of the image to process : " << endl << "->";
-    loadImage();
-    while (true){
-        cout << "Please select a filter to apply or 0 to exit:\n";
-       cout << "1-Black & white Filter\n2-Invert Filter\n3-Merge Filter\n4-Flip Image\n5-Darken and Lighten Image";
-       cout << "\n6- Rotate Image\n7- Detect Image Edges\n8- Enlarge Image\n9- Shrink Image\na- Mirror 1/2 Image";
-       cout << "\nb- Shuffle Image\nc- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
-      cin.ignore();
-       cin >> filter;  //to get the filter number
+    while (true) {
+        cout << "Please enter file name of the image to process : " << endl << "->";
+        loadImage();
+        while (true) {
+            cout << "Please select a filter to apply or 0 to exit:\n";
+            cout << "1-Black & white Filter\n2-Invert Filter\n3-Merge Filter\n4-Flip Image\n5-Darken and Lighten Image";
+            cout << "\n6- Rotate Image\n7- Detect Image Edges\n8- Enlarge Image\n9- Shrink Image\na- Mirror 1/2 Image";
+            cout << "\nb- Shuffle Image\nc- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
+            cin.ignore();
+            cin >> filter;  //to get the filter number
 
-        if (filter =='0'){
-           break;
-       }
-        else if (filter == '1'){
-            blackAndWhite(); //this filter make the image only black and white
+            if (filter == '0') {
+                break;
+            } else if (filter == '1') {
+                blackAndWhite(); //this filter make the image only black and white
+            } else if (filter == '2') {
+                Invert(); //this filter inverts the colors
+            } else if (filter == '4') {
+                char option;
+                cout << "Flip (h)orizontally or (v)ertically ?\n-->";
+                cin >> option;   //to detect the flip direction
+                flipImage(option);
+            } else if (filter == '5') {
+                int option; //to detect the flip degree
+                cout << "Rotate 90 or 180 or 270 ?\n-->";
+                cin >> option;
+                Rotate(option);
+            } else if (filter == '9') {
+                shrink();
+            } else if (filter == 'c') {
+                blur();
+            } else if (filter == 's') {
+                saveImage();
+                break;
+            }
         }
-        else if (filter == '2'){
-            Invert(); //this filter inverts the colors
-        }
-        else if (filter == '4'){
-            char option ;
-            cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
-            cin >> option;   //to detect the flip direction
-            flipImage(option);
-        }
-        else if (filter == '5') {
-            int option; //to detect the flip degree
-            cout << "Rotate 90 or 180 or 270 ?\n-->";
-            cin >> option;
-            Rotate(option);
-        }
-        else if (filter == '9'){
-            shrink();
-        }
-        else if (filter == 'c'){
-            blur();
-        }
-        else if (filter == 's'){
-            saveImage();
+        int x;
+        cout << "Do you want to upload new image (1) or exit (2)?";
+        cin >> x;
+        if (x==2){
             break;
         }
     }
