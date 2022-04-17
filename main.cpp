@@ -23,7 +23,8 @@ void blur();
 void shrink();
 void Invert ();
 void Rotate(int option);
-
+void merge();
+void darkenAndLighten();
 //------------------------------------------------------------
 
 int main() {
@@ -283,4 +284,44 @@ void Rotate (int option){
                 n++;
             }
         }
+}
+
+void merge(){
+    cout << "enter the file's name: ";
+    strcat (imageFileName);
+    writeGSBMP(imageFileName, image2);
+    for (int i = 0; i <= SIZE; i++){
+        for(int j = 0; j <= SIZE; j++){
+            temp[i][j] = (image1[i][j] + image2[i][j])/2;
+            image[i][j] = temp[i][j];
+
+        }
+    }
+}
+
+void darkenAndLighten(){
+    char option;
+    cout << "Do you want to (d)arken or (l)ighten?";
+    cin >> option;
+    if(option == 'd'){
+        strcat (C:\Users\asus\Downloads\photo_shop-main\img\A_black_image);
+        writeGSBMP(A_black_image, image2);
+        for (int i = 0; i <= SIZE; i++){
+            for(int j = 0; j <= SIZE; j++){
+                temp[i][j] = (image1[i][j] + image2[i][j])/2;
+                image[i][j] = temp[i][j];
+
+    }
+    else if(option == 'l'){
+                strcat (C:\Users\asus\Downloads\photo_shop-main\img\Solid_white.svg);
+                writeGSBMP(Solid_white.svg, image2);
+                for (int i = 0; i <= SIZE; i++){
+                    for(int j = 0; j <= SIZE; j++){
+                        temp[i][j] = (image1[i][j] + image2[i][j])/2;
+                        image[i][j] = temp[i][j];
+
+    }
+    else{
+        cout << "invalid entry";
+    }
 }
