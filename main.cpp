@@ -25,6 +25,8 @@ void Invert ();
 void Rotate(int option);
 void merge();
 void darkenAndLighten();
+void detectImageEdges();
+void mirrorImage();
 //------------------------------------------------------------
 
 int main() {
@@ -35,9 +37,9 @@ int main() {
         loadImage();
         while (true) {
             cout << "Please select a filter to apply or 0 to exit:\n";
-            cout << "1-Black & white Filter\n2-Invert Filter\n3-Flip Image";
-            cout << "\n4- Rotate Image\n5- Shrink Image";
-            cout << "\n6- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
+            cout << "1-Black & white Filter\n2-Invert Filter\n3-Merge Filter\n4-Flip Image\n5-Darken and Lighten Image";
+            cout << "\n6- Rotate Image\n7- Detect Image Edges\n8- Enlarge Image\n9- Shrink Image\na- Mirror 1/2 Image";
+            cout << "\nb- Shuffle Image\nc- Blur Image\ns- Save the image to a file\n0- Exit\n-->";
             cin.ignore();
             cin >> filter;  //to get the filter number
 
@@ -57,9 +59,17 @@ int main() {
                 cout << "Rotate 90 or 180 or 270 ?\n-->";
                 cin >> option;
                 Rotate(option);
-            } else if (filter == '9') {
+            }
+            else if (filter == '7'){
+                detectImageEdges();
+            }
+            else if (filter == '9') {
                 shrink();
-            } else if (filter == 'C') {
+            }
+            else if (filter == 'a'){
+                mirrorImage();
+            }
+            else if (filter == 'C') {
                 blur();
             } else if (filter == 's') {
                 saveImage();
@@ -325,3 +335,55 @@ void darkenAndLighten(){
         cout << "invalid entry";
     }
 }
+
+//_____________________________________________________________________________
+void detectImageEdges(){
+    //to detect the difference between only 2 colors
+    blackAndWhite();
+    for (int i = 0 ; i <255; i++){
+        for (int j = 0 ; j < 255; j++){
+            if (image[i][j] != image[i][j+1] || image[i][j] != image[i+1][j]){
+                image[i][j] =0;  //if there is a difference between two colors then there is an edge between them
+            }
+            else if (image[i][j] == image[i][j+1] || image[i][j] == image[i+1][j]){
+                image[i][j] = 255;
+            }
+        }
+    }
+}
+//______________________________________________________
+void mirrorImage(){
+    char side;
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
+    cin >> side;
+    if (side == 'l'){
+        for (int i = 0; i <255; i++){
+            for (int j = 127; j < 255 ; j++){
+                image[i][j] = image[i][255-j-1];
+            }
+        }
+    }
+    else if (side == 'r'){
+        for (int i = 0; i <255; i++){
+            for (int j = 0; j < 127 ; j++){
+                image[i][j] = image[i][255-j-1];
+            }
+        }
+    }
+
+    if (side == 'u'){
+        for (int i = 127; i <255; i++){
+            for (int j = 0; j < 255 ; j++){
+                image[i][j] = image[255-1-i][j];
+            }
+        }
+    }
+    if (side == 'd'){
+        for (int i = 0; i <127; i++){
+            for (int j = 0; j < 255 ; j++){
+                image[i][j] = image[255-1-i][j];
+            }
+        }
+    }
+}
+
