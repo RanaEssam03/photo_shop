@@ -27,6 +27,7 @@ void merge();
 void darkenAndLighten();
 void detectImageEdges();
 void mirrorImage();
+void enlarge ();
 //------------------------------------------------------------
 
 int main() {
@@ -49,12 +50,20 @@ int main() {
                 blackAndWhite(); //this filter make the image only black and white
             } else if (filter == '2') {
                 Invert(); //this filter inverts the colors
-            } else if (filter == '4') {
+            }
+            else if (filter=='3'){
+                merge(); //this filter merges 2 filters together
+            }
+            else if (filter == '4') {
                 char option;
                 cout << "Flip (h)orizontally or (v)ertically ?\n-->";
                 cin >> option;   //to detect the flip direction
                 flipImage(option);
-            } else if (filter == '5') {
+            }
+            else if (filter == '5'){
+                darkenAndLighten();
+            }
+            else if (filter == '6') {
                 int option; //to detect the flip degree
                 cout << "Rotate 90 or 180 or 270 ?\n-->";
                 cin >> option;
@@ -62,6 +71,9 @@ int main() {
             }
             else if (filter == '7'){
                 detectImageEdges();
+            }
+            else if (filter== '8'){
+                enlarge();
             }
             else if (filter == '9') {
                 shrink();
@@ -298,43 +310,72 @@ void Rotate (int option){
 
 void merge(){
     cout << "enter the file's name: ";
-    strcat (imageFileName);
-    writeGSBMP(imageFileName, image2);
+    unsigned char image2 [SIZE][SIZE];
+    unsigned char temp [SIZE][SIZE];
+    char imageFileName[100];
+    cin >> imageFileName;
+    strcat (imageFileName, ".bmp");
+    readGSBMP(imageFileName, image2);
     for (int i = 0; i <= SIZE; i++){
         for(int j = 0; j <= SIZE; j++){
-            temp[i][j] = (image1[i][j] + image2[i][j])/2;
+            temp[i][j] = (image[i][j] + image2[i][j])/2;
             image[i][j] = temp[i][j];
 
         }
     }
 }
 
+//void darkenAndLighten(){
+//    char option;
+//    cout << "Do you want to (d)arken or (l)ighten?";
+//    cin >> option;
+//    if(option == 'd'){
+//        strcat (C:\Users\asus\Downloads\photo_shop-main\img\A_black_image);
+//        writeGSBMP(A_black_image, image2);
+//        for (int i = 0; i <= SIZE; i++){
+//            for(int j = 0; j <= SIZE; j++){
+//                temp[i][j] = (image1[i][j] + image2[i][j])/2;
+//                image[i][j] = temp[i][j];
+//
+//    }
+//    else if(option == 'l'){
+//                strcat (C:\Users\asus\Downloads\photo_shop-main\img\Solid_white.svg);
+//                writeGSBMP(Solid_white.svg, image2);
+//                for (int i = 0; i <= SIZE; i++){
+//                    for(int j = 0; j <= SIZE; j++){
+//                        temp[i][j] = (image1[i][j] + image2[i][j])/2;
+//                        image[i][j] = temp[i][j];
+//
+//    }
+//    else{
+//        cout << "invalid entry";
+//    }
+//}
+
 void darkenAndLighten(){
-    char option;
-    cout << "Do you want to (d)arken or (l)ighten?";
-    cin >> option;
-    if(option == 'd'){
-        strcat (C:\Users\asus\Downloads\photo_shop-main\img\A_black_image);
-        writeGSBMP(A_black_image, image2);
-        for (int i = 0; i <= SIZE; i++){
-            for(int j = 0; j <= SIZE; j++){
-                temp[i][j] = (image1[i][j] + image2[i][j])/2;
-                image[i][j] = temp[i][j];
+    char x ;
+    cout << "(d)arken or (l)ighten ? ";
+    cin >> x;
+    if (x== 'd')
+    {
+        for (int i = 0 ; i < SIZE; i++){
+            for(int j = 0 ; j < SIZE ; j++){
+                image[i][j] /= 2;
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0 ; i < SIZE; i++){
+            for(int j = 0 ; j < SIZE ; j++){
+                image[i][j] = (image[i][j] + 255)/2 ;
+            }
+        }
+    }
 
     }
-    else if(option == 'l'){
-                strcat (C:\Users\asus\Downloads\photo_shop-main\img\Solid_white.svg);
-                writeGSBMP(Solid_white.svg, image2);
-                for (int i = 0; i <= SIZE; i++){
-                    for(int j = 0; j <= SIZE; j++){
-                        temp[i][j] = (image1[i][j] + image2[i][j])/2;
-                        image[i][j] = temp[i][j];
 
-    }
-    else{
-        cout << "invalid entry";
-    }
-}
+
 
 //_____________________________________________________________________________
 void detectImageEdges(){
