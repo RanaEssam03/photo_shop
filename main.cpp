@@ -497,3 +497,33 @@ void shuffle() {
         }
     }
 //-------------------------------------------------------------------------
+void enlarge(){
+     unsigned char temp[SIZE/2][SIZE/2];
+     int  startRow, startCol, endRow, endCol;
+     int quarter=0;
+     while(quarter>4 || quarter<1) {
+         cout << "Which quarter to enlarge 1, 2, 3 or 4?" << endl;
+         cin >> quarter;
+     }
+     startRow = quarter ==1 || quarter==2 ? 0 : SIZE/2;
+     endRow   = quarter ==1 || quarter==2 ? SIZE/2 : SIZE;
+     startCol = quarter ==1 || quarter==3 ? 0 : SIZE/2;
+     endCol   = quarter ==1 || quarter==3 ? SIZE/2 : SIZE;
+     for(int i=startRow,row=0;i<endRow;i++){
+         for (int j=startCol, col=0;j<endCol;j++){
+             temp[row][col]=image[i][j];
+             col++;
+         }
+         row++;
+     }
+     for(int i=0, row=0; i<SIZE/2 ; i++){
+         for (int j=0, col=0; j<SIZE/2 ; j++){
+             image[row][col]=temp[i][j];
+             image[row+1][col]=temp[i][j];
+             image[row][col+1]=temp[i][j];
+             image[row+1][col+1]=temp[i][j];
+             col+=2;
+         }
+         row+=2;
+     }
+ }
