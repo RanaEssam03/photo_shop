@@ -129,7 +129,7 @@ void saveImage () {
 void blackAndWhite() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            if (image[i][j] > 127)
+            if (image[i][j] > 127) //to detect the level of the color and if it's close to black we will make it black else white
                 image[i][j] = 255;
             else
                 image[i][j] = 0;
@@ -140,7 +140,7 @@ void blackAndWhite() {
 
 void flipImage(char option){
     if (option == 'v'){
-        for (int i = 0 ; i < SIZE/2 ; i++){  //to loop only on the half of the hight
+        for (int i = 0 ; i < SIZE/2 ; i++){  //to loop only on the half of the height
             for (int j = 0 ; j < SIZE ; j++){
                 int temp = image[i][j];
                 image[i][j] = image[SIZE-i-1][j];
@@ -163,7 +163,7 @@ void flipImage(char option){
 void blur () {
     int value;
     for (int i=0 ; i < SIZE ; i+=2){
-        for (int j=0 ; j < SIZE ; j+=2){
+        for (int j=0 ; j < SIZE ; j+=2){ //to calculate the average of the pixels around each pixel
             value =((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1])/9);
             image[i][j]=value;
             image[i+1][j]=value;
@@ -313,12 +313,12 @@ void merge(){
     unsigned char image2 [SIZE][SIZE];
     unsigned char temp [SIZE][SIZE];
     char imageFileName[100];
-    cin >> imageFileName;
+    cin >> imageFileName;  //to take the second image name from the user which will be merged with the current image
     strcat (imageFileName, ".bmp");
     readGSBMP(imageFileName, image2);
     for (int i = 0; i <= SIZE; i++){
         for(int j = 0; j <= SIZE; j++){
-            temp[i][j] = (image[i][j] + image2[i][j])/2;
+            temp[i][j] = (image[i][j] + image2[i][j])/2; //to take the average of both images and put it in one pixel so the pixel become mix of the both
             image[i][j] = temp[i][j];
 
         }
@@ -354,13 +354,13 @@ void merge(){
 
 void darkenAndLighten(){
     char x ;
-    cout << "(d)arken or (l)ighten ? ";
+    cout << "(d)arken or (l)ighten ? "; //to detect the choice which the user wants
     cin >> x;
     if (x== 'd')
     {
         for (int i = 0 ; i < SIZE; i++){
             for(int j = 0 ; j < SIZE ; j++){
-                image[i][j] /= 2;
+                image[i][j] /= 2; //to darken the image we must make each pixel close to black "0" or merge the photo with black image (0,0,0)
             }
         }
     }
@@ -368,7 +368,7 @@ void darkenAndLighten(){
     {
         for (int i = 0 ; i < SIZE; i++){
             for(int j = 0 ; j < SIZE ; j++){
-                image[i][j] = (image[i][j] + 255)/2 ;
+                image[i][j] = (image[i][j] + 255)/2 ; //to lighten the image we must make each pixel close to white "255" or merge the photo with white image (255,255,255)
             }
         }
     }
@@ -395,12 +395,12 @@ void detectImageEdges(){
 //______________________________________________________
 void mirrorImage(){
     char side;
-    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->"; //to detect which side the user want to mirror at
     cin >> side;
     if (side == 'l'){
         for (int i = 0; i <255; i++){
-            for (int j = 127; j < 255 ; j++){
-                image[i][j] = image[i][255-j-1];
+            for (int j = 127; j < 255 ; j++){ //to start change the second side of the image and make it equal to the first side
+                image[i][j] = image[i][255-j-1]; //to deal with the all pixels as a palindrome
             }
         }
     }
