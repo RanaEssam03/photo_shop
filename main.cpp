@@ -12,6 +12,7 @@
 #include <cstring>
 #include <cmath>
 #include "bmplib.cpp"
+#include <vector>
 using namespace std;
 unsigned char image[SIZE][SIZE];
 
@@ -330,33 +331,6 @@ void merge(){
     }
 }
 
-//void darkenAndLighten(){
-//    char option;
-//    cout << "Do you want to (d)arken or (l)ighten?";
-//    cin >> option;
-//    if(option == 'd'){
-//        strcat (C:\Users\asus\Downloads\photo_shop-main\img\A_black_image);
-//        writeGSBMP(A_black_image, image2);
-//        for (int i = 0; i <= SIZE; i++){
-//            for(int j = 0; j <= SIZE; j++){
-//                temp[i][j] = (image1[i][j] + image2[i][j])/2;
-//                image[i][j] = temp[i][j];
-//
-//    }
-//    else if(option == 'l'){
-//                strcat (C:\Users\asus\Downloads\photo_shop-main\img\Solid_white.svg);
-//                writeGSBMP(Solid_white.svg, image2);
-//                for (int i = 0; i <= SIZE; i++){
-//                    for(int j = 0; j <= SIZE; j++){
-//                        temp[i][j] = (image1[i][j] + image2[i][j])/2;
-//                        image[i][j] = temp[i][j];
-//
-//    }
-//    else{
-//        cout << "invalid entry";
-//    }
-//}
-
 void darkenAndLighten(){
     char x ;
     cout << "(d)arken or (l)ighten ? "; //to detect the choice which the user wants
@@ -432,13 +406,35 @@ void mirrorImage(){
         }
     }
 }
+
+//-------------------------------------------
+// divide image to corrspond quarter and fill the image given
+void divideImage(int quarter, unsigned char newImage[][SIZE / 2]) {
+    int startRow, endRow, startCol, endCol;
+
+    // define every quarter by start and end of row and col
+    startRow = quarter == 1 || quarter == 2 ? 0 : SIZE / 2;
+    endRow = quarter == 1 || quarter == 2 ? SIZE / 2 : SIZE;
+    startCol = quarter == 1 || quarter == 3 ? 0 : SIZE / 2;
+    endCol = quarter == 1 || quarter == 3 ? SIZE / 2 : SIZE;
+
+
+    // fill given image
+    for (int i = startRow, row = 0; i < endRow; i++) {
+        for (int j = startCol, col = 0; j < endCol; j++) {
+            newImage[row][col] = image[i][j];
+            col++;
+        }
+        row++;
+    }
+}
 //------------------------------------------------------------------------------
 void shuffle() {
 
         // order of suffle
         int seq[4];
 
-        // get seqounce from user
+        // get seqaunce from user
         cout << "New sequence of quarters ? ";
         for (int i = 0; i < 4; i++) {
             cin >> seq[i];
@@ -476,26 +472,7 @@ void shuffle() {
             }
         }
     }
-    // divide image to corrspond quarter and fill the image given
-    void divideImage(int quarter, unsigned char newImage[][SIZE / 2]) {
-        int startRow, endRow, startCol, endCol;
 
-        // define every quarter by start and end of row and col 
-        startRow = quarter == 1 || quarter == 2 ? 0 : SIZE / 2;
-        endRow = quarter == 1 || quarter == 2 ? SIZE / 2 : SIZE;
-        startCol = quarter == 1 || quarter == 3 ? 0 : SIZE / 2;
-        endCol = quarter == 1 || quarter == 3 ? SIZE / 2 : SIZE;
-
-
-        // fill given image
-        for (int i = startRow, row = 0; i < endRow; i++) {
-            for (int j = startCol, col = 0; j < endCol; j++) {
-                newImage[row][col] = image[i][j];
-                col++; 
-            }
-            row++; 
-        }
-    }
 //-------------------------------------------------------------------------
 void enlarge(){
      unsigned char temp[SIZE/2][SIZE/2];
