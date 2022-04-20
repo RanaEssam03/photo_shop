@@ -28,6 +28,7 @@ void darkenAndLighten();
 void detectImageEdges();
 void mirrorImage();
 void enlarge ();
+void shuffle ();
 //------------------------------------------------------------
 
 int main() {
@@ -81,6 +82,10 @@ int main() {
             else if (filter == 'a'){
                 mirrorImage();
             }
+            else if (filter == 'b'){
+                shuffle();
+            }
+            
             else if (filter == 'C') {
                 blur();
             } else if (filter == 's') {
@@ -307,7 +312,7 @@ void Rotate (int option){
             }
         }
 }
-
+//-------------------------------------------------------------------
 void merge(){
     cout << "enter the file's name: ";
     unsigned char image2 [SIZE][SIZE];
@@ -427,4 +432,68 @@ void mirrorImage(){
         }
     }
 }
+//------------------------------------------------------------------------------
+void shuffle() {
 
+        // order of suffle
+        int seq[4];
+
+        // get seqounce from user
+        cout << "New sequence of quarters ? ";
+        for (int i = 0; i < 4; i++) {
+            cin >> seq[i];
+            if (seq[i] > 4 || seq[i] < 1) {
+                cout << "reject\n";
+                return;
+            }
+        }
+
+        // all quarters of image
+        vector<unsigned char[SIZE / 2][SIZE / 2]>quarterImages(4);
+
+        // get quarters of image
+        for (int i = 0; i < quarterImages.size(); i++) {
+            divideImage(seq[i], quarterImages[i]);
+        }
+
+        int row, col;
+        for (int i = 0; i < 4; i++) { 
+
+            // avoid overflow
+            row = i == 0 || i == 1 ? 0 : SIZE / 2;
+
+            //fiil image with quarter in order
+            for (int j = 0; j < SIZE / 2; j++) {
+
+                // avoid overflow
+                col = i == 0 || i == 2 ? 0 : SIZE / 2;
+
+                for (int k = 0; k < SIZE / 2; k++) {
+                    image[row][col] = quarterImages[i][j][k];
+                    col++;
+                }
+                row++;
+            }
+        }
+    }
+    // divide image to corrspond quarter and fill the image given
+    void divideImage(int quarter, unsigned char newImage[][SIZE / 2]) {
+        int startRow, endRow, startCol, endCol;
+
+        // define every quarter by start and end of row and col 
+        startRow = quarter == 1 || quarter == 2 ? 0 : SIZE / 2;
+        endRow = quarter == 1 || quarter == 2 ? SIZE / 2 : SIZE;
+        startCol = quarter == 1 || quarter == 3 ? 0 : SIZE / 2;
+        endCol = quarter == 1 || quarter == 3 ? SIZE / 2 : SIZE;
+
+
+        // fill given image
+        for (int i = startRow, row = 0; i < endRow; i++) {
+            for (int j = startCol, col = 0; j < endCol; j++) {
+                newImage[row][col] = image[i][j];
+                col++; 
+            }
+            row++; 
+        }
+    }
+//-------------------------------------------------------------------------
