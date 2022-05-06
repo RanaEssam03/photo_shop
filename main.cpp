@@ -8,9 +8,7 @@
 // Purpose:first 6 filters
 
 #include <iostream>
-#include <fstream>
 #include <cstring>
-#include <cmath>
 #include "bmplib.cpp"
 #include <vector>
 using namespace std;
